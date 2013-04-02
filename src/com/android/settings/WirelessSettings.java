@@ -37,7 +37,6 @@ import android.widget.Switch;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.TelephonyProperties;
 import com.android.settings.nfc.NfcEnabler;
-import com.android.settings.wifi.p2p.WifiP2pEnabler;
 
 public class WirelessSettings extends SettingsPreferenceFragment {
 
@@ -59,8 +58,6 @@ public class WirelessSettings extends SettingsPreferenceFragment {
     private CheckBoxPreference mAirplaneModePreference;
     private NfcEnabler mNfcEnabler;
     private NfcAdapter mNfcAdapter;
-
-    private WifiP2pEnabler mWifiP2pEnabler;
 
     /**
      * Invoked on each preference click in this hierarchy, overrides
@@ -153,15 +150,6 @@ public class WirelessSettings extends SettingsPreferenceFragment {
             getPreferenceScreen().removePreference(findPreference(KEY_MOBILE_NETWORK_SETTINGS));
         }
 
-        WifiP2pManager p2p = (WifiP2pManager) activity.getSystemService(Context.WIFI_P2P_SERVICE);
-
-        if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_WIFI_DIRECT)) {
-            getPreferenceScreen().removePreference(wifiP2p);
-        } else {
-            mWifiP2pEnabler = new WifiP2pEnabler(activity, wifiP2p);
-        }
-        getPreferenceScreen().removePreference(findPreference(KEY_WIFI_P2P_SETTINGS));
-
         // Enable Proxy selector settings if allowed.
         Preference mGlobalProxy = findPreference(KEY_PROXY_SETTINGS);
         DevicePolicyManager mDPM = (DevicePolicyManager)
@@ -178,34 +166,6 @@ public class WirelessSettings extends SettingsPreferenceFragment {
         } else {
             Preference p = findPreference(KEY_TETHER_SETTINGS);
             p.setTitle(Utils.getTetheringLabel(cm));
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        mAirplaneModeEnabler.resume();
-        if (mNfcEnabler != null) {
-            mNfcEnabler.resume();
-        }
-
-        if (mWifiP2pEnabler != null) {
-            mWifiP2pEnabler.resume();
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        mAirplaneModeEnabler.pause();
-        if (mNfcEnabler != null) {
-            mNfcEnabler.pause();
-        }
-
-        if (mWifiP2pEnabler != null) {
-            mWifiP2pEnabler.pause();
         }
     }
 
