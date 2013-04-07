@@ -170,6 +170,26 @@ public class WirelessSettings extends SettingsPreferenceFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        mAirplaneModeEnabler.resume();
+        if (mNfcEnabler != null) {
+            mNfcEnabler.resume();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        mAirplaneModeEnabler.pause();
+        if (mNfcEnabler != null) {
+            mNfcEnabler.pause();
+        }
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_EXIT_ECM) {
             Boolean isChoiceYes = data.getBooleanExtra(EXIT_ECM_RESULT, false);
