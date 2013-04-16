@@ -31,10 +31,12 @@
         android:title="@string/wifi_tether_configure_ap_text"
         android:persistent="false" />
 
+    <!--
     <CheckBoxPreference
         android:key="enable_bluetooth_tethering"
         android:title="@string/bluetooth_tether_checkbox_text"
         android:persistent="false" />
+    -->
 
     <PreferenceScreen
         android:key="tethering_help"
