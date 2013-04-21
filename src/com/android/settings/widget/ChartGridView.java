@@ -45,7 +45,7 @@ public class ChartGridView extends View {
 
     private Drawable mPrimary;
     private Drawable mSecondary;
-    private Drawable mBorder;
+    //private Drawable mBorder;
     private int mLabelColor;
 
     private Layout mLayoutStart;
@@ -69,7 +69,7 @@ public class ChartGridView extends View {
 
         mPrimary = a.getDrawable(R.styleable.ChartGridView_primaryDrawable);
         mSecondary = a.getDrawable(R.styleable.ChartGridView_secondaryDrawable);
-        mBorder = a.getDrawable(R.styleable.ChartGridView_borderDrawable);
+        //mBorder = a.getDrawable(R.styleable.ChartGridView_borderDrawable);
         mLabelColor = a.getColor(R.styleable.ChartGridView_labelColor, Color.RED);
 
         a.recycle();
@@ -113,8 +113,8 @@ public class ChartGridView extends View {
             primary.draw(canvas);
         }
 
-        mBorder.setBounds(0, 0, width, height);
-        mBorder.draw(canvas);
+        //mBorder.setBounds(0, 0, width, height);
+        //mBorder.draw(canvas);
 
         final int padding = mLayoutStart != null ? mLayoutStart.getHeight() / 8 : 0;
 
